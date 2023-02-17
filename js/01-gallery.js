@@ -34,18 +34,30 @@ const onPictureClick = (e) => {
     e.preventDefault();
     console.log('onPictureClick');
 
-    const instance = basicLightbox.create(`
+    const openModal = basicLightbox.create(`
     <img src="${e.target.dataset.source}" width="800" height="600">
-`)
+`,
+// обʼєкт налаштувань бібліотеки
+      {
+        // при відкритій модалці додаємо обробник подій
+        onShow: () => {
+          document.addEventListener("keydown", closeModalByEsc)
+        },
+        // при закритій модалці знімаємо обробник подій
+        onClose: () => {
+          document.removeEventListener("keydown", closeModalByEsc)
+        },
+    })
 
-    instance.show();
+    openModal.show();
 
-    // document.addEventListener("keydown", (e) => {
-    //     if (e.key === "Escape") {
-    //         console.log('Close modal')
+    function closeModalByEsc (e) {
+        if (e.key === "Escape") {
+          console.log('Close modal by Esc');
+          openModal.close();
 
-    //     }
-    // })
+        }
+    }
 };
 
 galleryEl.addEventListener("click", onPictureClick);
