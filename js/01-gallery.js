@@ -4,7 +4,7 @@ import { galleryItems } from './gallery-items.js';
 console.log(galleryItems);
 
 const galleryEl = document.querySelector('.gallery');
-console.log(galleryEl);
+// console.log(galleryEl);
 
 const renderGallery = (pictures) => {
     const result =  pictures
@@ -32,7 +32,7 @@ const onPictureClick = (e) => {
         return;
     }
     e.preventDefault();
-    console.log('onPictureClick');
+    // console.log('onPictureClick');
 
     const openModal = basicLightbox.create(`
     <img src="${e.target.dataset.source}" width="800" height="600">
@@ -53,7 +53,7 @@ const onPictureClick = (e) => {
 
     function closeModalByEsc (e) {
         if (e.key === "Escape") {
-          console.log('Close modal by Esc');
+          // console.log('Close modal by Esc');
           openModal.close();
 
         }
